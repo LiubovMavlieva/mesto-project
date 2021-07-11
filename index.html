@@ -9,62 +9,63 @@
   <body class="page page_position_center">
     <header class="header page__section">
       <img src="images/logo.svg" class="header__logo" alt="лого" />
-      <img src="images/Line.svg" class="header__line" alt="линия" />
     </header>
     <main class="main">
     <section class="profile page__section">
-      <img src="./images/Avatar.svg" class="profile__avatar" alt="аватар" />
+      <img src="./images/avatar.svg" class="profile__avatar" alt="аватар" />
       <div class="profile__info">
         <h1 class="profile__title">Жак-Ив Кусто</h1>
         <p class="profile__subtitle">Исследователь океана</p>
-        <button class="profile__edit-button"></button>
+        <button class="profile__edit-button" type="button"></button>
       </div>
-      <button class="profile__add-button"></button>
+      <button class="profile__add-button" type="button"></button>
     </section>
+    <section class="photo">
     <ul class="photo-grid page__section">
       <li class="photo-grid__element">
-        <img src="./images/Astrakhan.jpg" class="photo-grid__img" alt="Астрахань" />
+        <img src="./images/astrakhan.jpg" class="photo-grid__img" alt="Астрахань" />
         <h2 class="photo-grid__title">Астрахань</h2>
-        <button class="photo-grid__like photo-grid__like_active"></button>
+        <button class="photo-grid__like photo-grid__like_active" type="button"></button>
       </li>
       <li class="photo-grid__element">
-        <img src="./images/Dombai.jpg" class="photo-grid__img" alt="Домбай" />
+        <img src="./images/dombai.jpg" class="photo-grid__img" alt="Домбай" />
         <h2 class="photo-grid__title">Домбай</h2>
-        <button class="photo-grid__like"></button>
+        <button class="photo-grid__like" type="button"></button>
       </li>
       <li class="photo-grid__element">
-        <img src="./images/Moscow.jpg" class="photo-grid__img" alt="Москва" />
+        <img src="./images/moscow.jpg" class="photo-grid__img" alt="Москва" />
         <h2 class="photo-grid__title">Москва</h2>
-        <button class="photo-grid__like"></button>
+        <button class="photo-grid__like" type="button"></button>
       </li>
       <li class="photo-grid__element">
-        <img src="./images/Krasnodar.jpg" class="photo-grid__img" alt="Краснодар" />
+        <img src="./images/krasnodar.jpg" class="photo-grid__img" alt="Краснодар" />
         <h2 class="photo-grid__title">Краснодар</h2>
-        <button class="photo-grid__like"></button>
+        <button class="photo-grid__like" type="button"></button>
       </li>
       <li class="photo-grid__element">
-        <img src="./images/Volgograd.jpg" class="photo-grid__img" alt="Волгоград" />
+        <img src="./images/volgograd.jpg" class="photo-grid__img" alt="Волгоград" />
         <h2 class="photo-grid__title">Волгоград</h2>
-        <button class="photo-grid__like"></button>
+        <button class="photo-grid__like" type="button"></button>
       </li>
       <li class="photo-grid__element">
-        <img src="./images/Samara.jpg" class="photo-grid__img" alt="Самара" />
+        <img src="./images/samara.jpg" class="photo-grid__img" alt="Самара" />
         <h2 class="photo-grid__title">Самара</h2>
-        <button class="photo-grid__like"></button>
+        <button class="photo-grid__like" type="button"></button>
       </li>
     </ul>
+    </section>
     </main>
     <footer class="footer page__section">
       <p class="footer__copyright">&copy;2020 Mesto Russia</p>
     </footer>
     <form class="popup page__section">
-      <fieldset class="popup__container page__section">
+      <div class="popup__container page__section">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <input type="text" class="popup__item" placeholder="Имя" />
-        <input type="text" class="popup__item" placeholder="О себе" />
-        <input type="submit" class="popup__button" value="Сохранить" />
-        <button class="popup__close-button"></button>
-      </fieldset>
+        <input type="text" class="popup__item" placeholder="Имя">
+        <input type="text" class="popup__item" placeholder="О себе">
+        <input type="submit" class="popup__button" value="Сохранить">
+        <button class="popup__close-button" type="button"></button>
+      </div>
     </form>
   </body>
 </html>

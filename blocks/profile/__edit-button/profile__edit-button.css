@@ -5,15 +5,15 @@
   max-width: 24px;
   max-height: 24px;
   border: 1px solid white;
-  background-image: url(../../../images/EditButton.svg);
+  background-image: url(../../../images/editbutton.svg);
   background-repeat: no-repeat;
   background-color: black;
   background-position: center;
+  transition: ease-in;
 }
 
 .profile__edit-button:hover{
   opacity: .6;
-  transition: ease-in;
 }
 
 @media screen and (max-width: 680px){
