@@ -1,0 +1,8 @@
+.photo-grid__element{
+  background-color: white;
+  max-width: 282px;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 230px;
+  grid-template-rows: 282px 79px;
+}
