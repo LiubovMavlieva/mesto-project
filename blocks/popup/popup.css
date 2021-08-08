@@ -1,9 +1,17 @@
 .popup{
    min-width: 100%;
    background-color: rgba(0,0,0,.5);
-   min-height: 800px;
+   height: 100%;
    position: fixed;
    top:0;
    left:0;
-   display: none;
+   visibility: hidden;
+   opacity: 0;
+   transition: visibility 0s, opacity 0.5s linear;
+}
+
+@media screen and (max-width: 580px) {
+ .popup{
+   height: 50%;
+ }  
 }

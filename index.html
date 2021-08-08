@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8" />l
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Место</title>
     <link rel="stylesheet" href="./pages/index.css" />
@@ -21,51 +21,46 @@
       <button class="profile__add-button" type="button"></button>
     </section>
     <section class="photo">
-    <ul class="photo-grid page__section">
-      <li class="photo-grid__element">
-        <img src="./images/astrakhan.jpg" class="photo-grid__img" alt="Астрахань" />
-        <h2 class="photo-grid__title">Астрахань</h2>
-        <button class="photo-grid__like photo-grid__like_active" type="button"></button>
-      </li>
-      <li class="photo-grid__element">
-        <img src="./images/dombai.jpg" class="photo-grid__img" alt="Домбай" />
-        <h2 class="photo-grid__title">Домбай</h2>
-        <button class="photo-grid__like" type="button"></button>
-      </li>
-      <li class="photo-grid__element">
-        <img src="./images/moscow.jpg" class="photo-grid__img" alt="Москва" />
-        <h2 class="photo-grid__title">Москва</h2>
-        <button class="photo-grid__like" type="button"></button>
-      </li>
-      <li class="photo-grid__element">
-        <img src="./images/krasnodar.jpg" class="photo-grid__img" alt="Краснодар" />
-        <h2 class="photo-grid__title">Краснодар</h2>
-        <button class="photo-grid__like" type="button"></button>
-      </li>
-      <li class="photo-grid__element">
-        <img src="./images/volgograd.jpg" class="photo-grid__img" alt="Волгоград" />
-        <h2 class="photo-grid__title">Волгоград</h2>
-        <button class="photo-grid__like" type="button"></button>
-      </li>
-      <li class="photo-grid__element">
-        <img src="./images/samara.jpg" class="photo-grid__img" alt="Самара" />
-        <h2 class="photo-grid__title">Самара</h2>
-        <button class="photo-grid__like" type="button"></button>
-      </li>
-    </ul>
+      <ul class="photo-grid page__section">
+      </ul>
     </section>
+    <template id="template">
+      <li class="photo-grid__element">
+        <img class="photo-grid__img">
+        <h2 class="photo-grid__title"> </h2>
+        <button class="photo-grid__like" type="button"></button>
+        <button class="photo-grid__delete" type="button"></button>
+      </li>
+   </template>
     </main>
     <footer class="footer page__section">
       <p class="footer__copyright">&copy;2020 Mesto Russia</p>
     </footer>
-    <form class="popup page__section">
+    <form class="popup popup_edit page__section">
       <div class="popup__container page__section">
-        <h2 class="popup__title">Редактировать профиль</h2>
-        <input type="text" class="popup__item" placeholder="Имя">
-        <input type="text" class="popup__item" placeholder="О себе">
-        <input type="submit" class="popup__button" value="Сохранить">
+        <h2 class="popup__title popup__title_edit"></h2>
+        <input type="text" class="popup__item popup__item_type_name" placeholder="">
+        <input type="text" class="popup__item popup__item_type_job" placeholder="">
+        <input type="submit" class="popup__button popup__button_edit" value="Сохранить">
         <button class="popup__close-button" type="button"></button>
       </div>
     </form>
+   <form class="popup popup_add page__section">
+      <div class="popup__container page__section">
+        <h2 class="popup__title popup__title_add"></h2>
+        <input type="text" class="popup__item popup__item_type_place-name" placeholder="">
+        <input type="text" class="popup__item popup__item_type_link" placeholder="">
+        <input type="submit" class="popup__button popup__button_add" value="Сохранить">
+        <button class="popup__close-button popup__close-button_add" type="button"></button>
+      </div>
+    </form> 
+    <form class="popup popup_big-img page__section">
+      <div class="popup__container popup__container_big-img page__section">
+        <img class = "popup__img">
+        <h2 class="popup__title popup__title_big-img"></h2>
+        <button class="popup__close-button popup__close-button_big-img" type="button"></button>
+      </div>
+    </form> 
+    <script src='./index.js'></script>
   </body>
 </html>

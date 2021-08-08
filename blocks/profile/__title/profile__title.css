@@ -6,6 +6,9 @@
   grid-row: 1;
   margin: 0;
   padding-top: 22px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 581px) {
