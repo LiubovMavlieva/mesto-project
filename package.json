@@ -1,0 +1,38 @@
+{
+  "name": "mesto",
+  "version": "1.0.0",
+  "description": "*Данный проект был выполнен в рамках Яндекс Практикума.* Язык сайта - русский. Данный сайт выполнен в рамках изучения адаптивной вёрстки, а так же JavaScript. Проект адекватно работает на разрешениях экрана от 320px до 1280px. Использована методология БЭМ. Реализованны технологии Grid.  Добавлена функциональность с помощью JS - открываются и закрываются модальные окна, отрисовывается контент на странице. [Ссылка на проект](https://liubovmavlieva.github.io/mesto/)",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "dev": "webpack serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LiubovMavlieva/mesto.git"
+  },
+  "author": "Liubov Mavlieva",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LiubovMavlieva/mesto/issues"
+  },
+  "homepage": "https://github.com/LiubovMavlieva/mesto#readme",
+  "devDependencies": {
+    "@babel/core": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "autoprefixer": "^10.3.7",
+    "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^6.3.0",
+    "cssnano": "^5.0.8",
+    "html-webpack-plugin": "^5.3.2",
+    "mini-css-extract-plugin": "^2.4.2",
+    "postcss-loader": "^6.1.1",
+    "webpack": "^5.58.1",
+    "webpack-cli": "^4.9.0",
+    "webpack-dev-server": "^4.3.1"
+  },
+  "dependencies": {
+    "core-js": "^3.18.2"
+  }
+}
