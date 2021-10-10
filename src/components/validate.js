@@ -1,13 +1,4 @@
-const myObjValidation = {
-  formSelector: '.form',
-  inputSelector: '.popup__item',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_inactive',
-  inputErrorClass: 'popup__item_type_error',
-  errorClass: 'popup__item-error_active'
-}; 
-
-
+import {disabledButton , activeButton} from './utils.js'
 function showInputError (input, objValidation) {
   const errorElement = document.querySelector(`.${input.id}-error`);
   input.classList.add(objValidation.inputErrorClass);
@@ -36,16 +27,14 @@ function hasInvalidInput (inputList) {
     return !input.validity.valid;
   })
 }
-function disabledButton (submitButton, objValidation) {
-  submitButton.classList.add(objValidation.inactiveButtonClass);
-  submitButton.setAttribute('disabled' , 'disabled');
-}
-function activeButton (submitButton, objValidation) {
-  submitButton.classList.remove(objValidation.inactiveButtonClass);
-  submitButton.removeAttribute('disabled');
-}
 
-import { toggleButtonState } from "./utils.js";
+export function toggleButtonState (inputList, submitButton, objValidation) {
+  if (hasInvalidInput(inputList)) {
+    disabledButton(submitButton , objValidation)
+  } else {
+    activeButton(submitButton , objValidation)
+  }
+}
 
 function setEventListeners (form, objValidation) {
   const inputList = Array.from(form.querySelectorAll(objValidation.inputSelector));
@@ -69,4 +58,4 @@ function enableValidation (objValidation) {
   });
 };
 
-export {showInputError , checkInputValidity , hasInvalidInput , disabledButton, activeButton , setEventListeners , enableValidation, myObjValidation} 
+export {showInputError , checkInputValidity , hasInvalidInput , disabledButton, activeButton , setEventListeners , enableValidation} 

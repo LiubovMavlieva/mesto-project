@@ -1,17 +1,8 @@
-import { activeButton , disabledButton , hasInvalidInput } from "./validate.js";
-
-export function toggleButtonState (inputList, submitButton, objValidation) {
-  if (hasInvalidInput(inputList)) {
-    disabledButton(submitButton , objValidation)
-  } else {
-    activeButton(submitButton , objValidation)
-  }
+export function disabledButton (submitButton, objValidation) {
+  submitButton.classList.add(objValidation.inactiveButtonClass);
+  submitButton.setAttribute('disabled' , 'disabled');
 }
-
-export const openPopup = (popup) => {
-  popup.classList.add("popup_opened");
-};
-
-export const closePopup = (popup) => {
-  popup.classList.remove("popup_opened");
-};
+export function activeButton (submitButton, objValidation) {
+  submitButton.classList.remove(objValidation.inactiveButtonClass);
+  submitButton.removeAttribute('disabled');
+}
