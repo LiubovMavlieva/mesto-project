@@ -1,5 +1,5 @@
-import {imgForm, openPopup} from "./modal.js";
-
+import {imgForm} from './constants.js'
+import { openPopup } from './modal.js';
 const photoGrid = document.querySelector('.photo-grid');
 const popupImgTitle = document.querySelector(".popup__title_type_big-img");
 

@@ -1,8 +1,3 @@
-const editForm = document.querySelector(".popup_type_edit");
-const addForm = document.querySelector(".popup_type_add");
-const imgForm = document.querySelector(".popup_type_big-img");
-
-
 function closePopupEsc(e) {
   if (e.key === "Escape") {
     closePopup(document.querySelector(".popup_opened"));
@@ -24,5 +19,3 @@ export function closePopupOverlay(e) {
     closePopup(document.querySelector(".popup_opened"));
   }
 }
-
-export { editForm, addForm , imgForm};

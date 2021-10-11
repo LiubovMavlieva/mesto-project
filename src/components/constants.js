@@ -57,4 +57,8 @@ const myObjValidation = {
   errorClass: 'popup__item-error_active'
 }; 
 
-export {myObjValidation ,nameInput , jobInput , profileJob, profileName , editButton , editSaveBtn , editCloseButton , addButton , addCloseButton , imgCloseButton,  addSaveButton}
+const editForm = document.querySelector(".popup_type_edit");
+const addForm = document.querySelector(".popup_type_add");
+const imgForm = document.querySelector(".popup_type_big-img");
+
+export {myObjValidation ,nameInput , jobInput , profileJob, profileName , editButton , editSaveBtn , editCloseButton , addButton , addCloseButton , imgCloseButton,  addSaveButton , editForm ,addForm ,imgForm}

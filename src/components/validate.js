@@ -58,4 +58,4 @@ function enableValidation (objValidation) {
   });
 };
 
-export {showInputError , checkInputValidity , hasInvalidInput , disabledButton, activeButton , setEventListeners , enableValidation} 
+export {enableValidation} 

@@ -1,9 +1,9 @@
-import './index.css';
-import { addCard , createCard } from '../components/card.js'
-import {myObjValidation, initialCard , placeNameInput , linkInput, nameInput , jobInput , profileJob, profileName , editButton , editCloseButton , addButton , addCloseButton , imgCloseButton, addSaveButton} from '../components/constants.js';
-import { addForm , editForm ,imgForm , closePopup , openPopup , closePopupOverlay} from '../components/modal.js';
-import {showInputError , checkInputValidity , hasInvalidInput , setEventListeners, enableValidation} from '../components/validate.js'
-import {disabledButton} from '../components/utils.js'
+import '../pages/index.css';
+import {addCard} from './card.js'
+import {myObjValidation, initialCard , placeNameInput , linkInput, nameInput , jobInput , profileJob, profileName , editButton , editCloseButton , addButton , addCloseButton , imgCloseButton, addSaveButton , addForm , editForm , imgForm} from './constants.js';
+import { closePopup , openPopup , closePopupOverlay} from './modal.js';
+import {enableValidation} from './validate.js'
+import {disabledButton} from './utils.js'
 function handleAddNewCard(evt) {
   evt.preventDefault();
   const newObj = {
@@ -11,10 +11,9 @@ function handleAddNewCard(evt) {
     link: linkInput.value
   }
   addCard(newObj)
-  const buttons = document.querySelectorAll('.popup__button');
-  buttons.forEach((button) => {
-    disabledButton(button, myObjValidation)
-  })
+
+  disabledButton(addSaveButton, myObjValidation)
+
   placeNameInput.value = '';
   linkInput.value = '';
   closePopup(addForm);
