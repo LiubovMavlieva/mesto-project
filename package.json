@@ -1,7 +1,7 @@
 {
   "name": "mesto-project",
   "version": "1.0.0",
-  "description": "```\r Адаптивная верстка\r Используются :\r - медиа-запросы\r - grid\r - flexbox\r ```",
+  "description": "",
   "main": "index.js",
   "dependencies": {
     "core-js": "^3.17.3"
