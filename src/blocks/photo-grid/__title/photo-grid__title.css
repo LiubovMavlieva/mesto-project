@@ -6,4 +6,7 @@
    grid-column: 1;
    align-self: center;
    padding-left: 21px;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+   overflow: hidden;
 }

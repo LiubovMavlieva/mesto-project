@@ -3,7 +3,8 @@
   max-width: 282px;
   border-radius: 10px;
   display: grid;
-  grid-template-columns: 230px;
+  grid-template-columns: 230px 22px 30px;
   grid-template-rows: 282px 79px;
   position: relative;
+  height: 361px;
 }

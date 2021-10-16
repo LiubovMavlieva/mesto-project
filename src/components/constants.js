@@ -1,35 +1,5 @@
-export const initialCard = [
-  {
-    name: 'Самара',
-    link: 'https://images.unsplash.com/photo-1627680384350-24bf46c0b1fd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80'
-  },
-  {
-    name: 'Волгоград',
-    link: 'https://images.unsplash.com/photo-1613863501971-ccb1757e40ba?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80'
-  },
-  {
-    name: 'Краснодар',
-    link: 'https://images.unsplash.com/photo-1625862796301-e6658293d54f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80'
-  },
-  {
-    name: 'Москва',
-    link: 'https://images.unsplash.com/photo-1626772857836-ff0078fe0b61?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80'
-  },
-  {
-    name: 'Домбай',
-    link: 'https://images.unsplash.com/photo-1595849948760-cc6dcea6c162?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80'
-  },
-  {
-    name: 'Астрахань',
-    link: 'https://images.unsplash.com/photo-1592926487153-0d344eaff0ca?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80jmyv5Dgsw'
-  }
-];
-
 export const placeNameInput = document.querySelector(".popup__item_type_place-name");
 export const linkInput = document.querySelector(".popup__item_type_link");
-
-const nameInput = document.querySelector(".popup__item_type_name");
-const jobInput = document.querySelector(".popup__item_type_job");
 
 const profileName = document.querySelector(".profile__title");
 const profileJob = document.querySelector(".profile__subtitle");
@@ -43,6 +13,9 @@ const editSaveBtn = document.querySelector(".popup__button_type_edit");
 const addButton = document.querySelector(".profile__add-button");
 const addSaveButton = document.querySelector(".popup__button_type_add");
 const addCloseButton = document.querySelector(".popup__close-button_type_add");
+
+const nameInput = document.querySelector(".popup__item_type_name");
+const jobInput = document.querySelector(".popup__item_type_job");
 
 const imgCloseButton = document.querySelector(
   ".popup__close-button_type_big-img"
@@ -60,5 +33,12 @@ const myObjValidation = {
 const editForm = document.querySelector(".popup_type_edit");
 const addForm = document.querySelector(".popup_type_add");
 const imgForm = document.querySelector(".popup_type_big-img");
+const avaForm = document.querySelector(".popup_type_avatar");
+const avaBtn = document.querySelector('.profile__avatar-button')
+const avaCloseButton = document.querySelector('.popup__close-button_type_ava')
+const avaSaveBtn = document.querySelector('.popup__button_type_avatar')
+const avatarInput = document.querySelector('.popup__item_type_avatar')
+const avatar = document.querySelector('.profile__avatar')
 
-export {myObjValidation ,nameInput , jobInput , profileJob, profileName , editButton , editSaveBtn , editCloseButton , addButton , addCloseButton , imgCloseButton,  addSaveButton , editForm ,addForm ,imgForm}
+
+export {myObjValidation , nameInput, jobInput,avatar ,avaSaveBtn ,avaForm, avatarInput,avaBtn, avaCloseButton,profileJob , profileName , editButton , editSaveBtn , editCloseButton , addButton , addCloseButton , imgCloseButton,  addSaveButton , editForm ,addForm ,imgForm}

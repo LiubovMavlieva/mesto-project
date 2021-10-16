@@ -1,8 +1,6 @@
 .photo-grid__like{
   min-width: 22px;
   min-height: 22px;
-  grid-column: 2;
-  padding-right: 30px;
   align-self: center;
   background-color: inherit;
   background-image: url(../../../images/Heart.svg);

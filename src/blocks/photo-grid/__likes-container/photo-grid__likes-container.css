@@ -1,0 +1,6 @@
+.photo-grid__likes-container {
+  align-self: center;
+  grid-column: 2;
+  height: 22px;
+  margin-bottom: 22px;
+}
