@@ -34,8 +34,10 @@ function createCard(cardData) {
   if (checkLikesId(myId, cardData.likes)) {
    likeBth.classList.add("photo-grid__like_active");
   }
-  deleteBtn.addEventListener("click", () => {
-    removeMyCard(cardElement, cardData._id);
+  deleteBtn.addEventListener("click", (evt) => {
+    evt.target.closest('.photo-grid__element').remove();
+    //cardElement.remove();
+    deleteCard(cardData._id);
   });
   likeBth.addEventListener("click", () => {
     handleLike(likeBth, cardData._id, amountOfLikes);
@@ -47,7 +49,7 @@ export function addCard(cardData) {
   const card = createCard(cardData);
   photoGrid.prepend(card);
 }
-
+/*
 function removeMyCard(cardElement, cardId) {
   deleteCard(cardId)
     .then(() => {
@@ -57,20 +59,20 @@ function removeMyCard(cardElement, cardId) {
       console.log(err);
     });
 }
-
-function handleLike(cardlikeElement, cardId, likenQuantity) {
+*/
+function handleLike(cardlikeElement, cardId, likesAmount) {
   if (!cardlikeElement.classList.contains("photo-grid__like_active")) {
     likeCard(cardId)
       .then((result) => {
         cardlikeElement.classList.toggle("photo-grid__like_active");
-        likenQuantity.textContent = result.likes.length;
+        likesAmount.textContent = result.likes.length;
       })
       .catch((err) => console.log(err));
   } else {
     dislikeCard(cardId)
       .then((result) => {
         cardlikeElement.classList.toggle("photo-grid__like_active");
-        likenQuantity.textContent = result.likes.length;
+        likesAmount.textContent = result.likes.length;
       })
       .catch((err) => console.log(err));
   }
