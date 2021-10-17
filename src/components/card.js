@@ -36,7 +36,6 @@ function createCard(cardData) {
   }
   deleteBtn.addEventListener("click", (evt) => {
     evt.target.closest('.photo-grid__element').remove();
-    //cardElement.remove();
     deleteCard(cardData._id);
   });
   likeBth.addEventListener("click", () => {
@@ -49,17 +48,7 @@ export function addCard(cardData) {
   const card = createCard(cardData);
   photoGrid.prepend(card);
 }
-/*
-function removeMyCard(cardElement, cardId) {
-  deleteCard(cardId)
-    .then(() => {
-      cardElement.remove();
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-}
-*/
+
 function handleLike(cardlikeElement, cardId, likesAmount) {
   if (!cardlikeElement.classList.contains("photo-grid__like_active")) {
     likeCard(cardId)
