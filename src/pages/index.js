@@ -31,15 +31,11 @@ import {
   avaBtn,
   avaSaveBtn,
   avatarInput,
-  avaCloseButton,
   avatar,
   profileJob,
   profileName,
   editButton,
-  editCloseButton,
   addButton,
-  addCloseButton,
-  imgCloseButton,
   addSaveButton,
   addForm,
   editForm,
@@ -123,24 +119,23 @@ editButton.addEventListener("click", () => {
   jobInput.value = profileJob.textContent;
   openPopup(editForm);
 });
-editCloseButton.addEventListener("click", () => {
-  closePopup(editForm);
-});
+
 addButton.addEventListener("click", () => {
   openPopup(addForm);
-});
-addCloseButton.addEventListener("click", () => {
-  closePopup(addForm);
 });
 avaBtn.addEventListener("click", () => {
   openPopup(avaForm)
 })
-avaCloseButton.addEventListener("click", () => {
-  closePopup(avaForm)
+
+const popups = document.querySelectorAll('.popup')
+
+popups.forEach((popup) => {
+    popup.addEventListener('click', (evt) => {
+        if (evt.target.classList.contains('popup_opened')) {
+            closePopup(popup)
+        }
+        if (evt.target.classList.contains('popup__close-button')) {
+          closePopup(popup)
+        }
+    })
 })
-imgCloseButton.addEventListener("click", () => {
-  closePopup(imgForm);
-});
-editForm.addEventListener('click', closePopupOverlay);
-addForm.addEventListener('click', closePopupOverlay);
-imgForm.addEventListener('click', closePopupOverlay);

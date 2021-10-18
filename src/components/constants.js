@@ -5,14 +5,11 @@ const profileName = document.querySelector(".profile__title");
 const profileJob = document.querySelector(".profile__subtitle");
 
 const editButton = document.querySelector(".profile__edit-button");
-const editCloseButton = document.querySelector(
-  ".popup__close-button_type_edit"
-);
+
 const editSaveBtn = document.querySelector(".popup__button_type_edit");
 
 const addButton = document.querySelector(".profile__add-button");
 const addSaveButton = document.querySelector(".popup__button_type_add");
-const addCloseButton = document.querySelector(".popup__close-button_type_add");
 
 const nameInput = document.querySelector(".popup__item_type_name");
 const jobInput = document.querySelector(".popup__item_type_job");
@@ -35,10 +32,9 @@ const addForm = document.querySelector(".popup_type_add");
 const imgForm = document.querySelector(".popup_type_big-img");
 const avaForm = document.querySelector(".popup_type_avatar");
 const avaBtn = document.querySelector('.profile__avatar-button')
-const avaCloseButton = document.querySelector('.popup__close-button_type_ava')
 const avaSaveBtn = document.querySelector('.popup__button_type_avatar')
 const avatarInput = document.querySelector('.popup__item_type_avatar')
 const avatar = document.querySelector('.profile__avatar')
 
 
-export {myObjValidation , nameInput, jobInput,avatar ,avaSaveBtn ,avaForm, avatarInput,avaBtn, avaCloseButton,profileJob , profileName , editButton , editSaveBtn , editCloseButton , addButton , addCloseButton , imgCloseButton,  addSaveButton , editForm ,addForm ,imgForm}
+export {myObjValidation , nameInput, jobInput,avatar ,avaSaveBtn ,avaForm, avatarInput,avaBtn,profileJob , profileName , editButton , editSaveBtn , addButton , imgCloseButton,  addSaveButton , editForm ,addForm ,imgForm}

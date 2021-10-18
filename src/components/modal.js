@@ -18,6 +18,6 @@ const closePopup = (popup) => {
 
 function closePopupOverlay(e) {
   if (e.target.classList.contains('popup')) {
-     closePopup(document.querySelector(".popup_opened"));
+     closePopup(e.target);
    }
  }

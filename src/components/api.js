@@ -61,7 +61,7 @@ export const deleteCard = (cardId) => {
   return fetch(`${config.baseUrl}/cards/${cardId}`, {
     method: "DELETE",
     headers: config.headers,
-  }).then(getResponseData);
+  }).then(getResponseData)
 };
 
 export const likeCard = (cardId) => {

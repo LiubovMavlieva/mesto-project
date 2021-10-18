@@ -34,9 +34,12 @@ function createCard(cardData) {
   if (checkLikesId(myId, cardData.likes)) {
    likeBth.classList.add("photo-grid__like_active");
   }
+
   deleteBtn.addEventListener("click", (evt) => {
-    evt.target.closest('.photo-grid__element').remove();
-    deleteCard(cardData._id);
+    deleteCard(cardData._id)
+    .then(() => {
+      evt.target.closest('.photo-grid__element').remove()
+    })
   });
   likeBth.addEventListener("click", () => {
     handleLike(likeBth, cardData._id, amountOfLikes);
