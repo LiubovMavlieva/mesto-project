@@ -1,89 +1,88 @@
-import { deleteCard, likeCard, dislikeCard } from "./api";
-import { myId } from "../pages/index";
-import { openPopup } from "./modal";
-import {imgForm} from './constants.js'
-
-const photoGrid = document.querySelector('.photo-grid');
-const popupImgTitle = document.querySelector(".popup__title_type_big-img");
-
-export const photo = document.querySelector('.photo')
-function createCard(cardData) {
-  const photoTemplate = document.querySelector('#template').content;
-  const cardElement = photoTemplate.cloneNode(true);
-  const cardImage = cardElement.querySelector('.photo-grid__img');
-  const popupImg = document.querySelector('.popup__img');
-  const likeBth = cardElement.querySelector('.photo-grid__like');
-  const amountOfLikes = cardElement.querySelector('.photo-grid__likes-amount')
-  const deleteBtn = cardElement.querySelector('.photo-grid__delete');
-
-  const cardTitle = cardElement.querySelector('.photo-grid__title').textContent = cardData.name;
-  cardImage.src = cardData.link;
-  cardImage.alt = cardData.name;
-
-  cardImage.addEventListener("click", () => {
-    popupImg.src = cardData.link;
-    popupImg.alt = cardData.name;
-    popupImgTitle.textContent = cardData.name;
-
-    openPopup(imgForm)
-  });
-  amountOfLikes.textContent = cardData.likes.length;
-  if (!checkCardId(myId, cardData.owner._id)) {
-    deleteBtn.style.display = "none";
-  }
-  if (checkLikesId(myId, cardData.likes)) {
-   likeBth.classList.add("photo-grid__like_active");
+export class Card {
+  constructor({name, link, likes, owner, _id}, {handleImageClick}, template, userId, api, {cardImage, likeBtn, deleteBtn, likesCounter, activeLike}) {
+      this._template = template;
+      this._element = this._getCardElement();
+      this._name = name;
+      this._link = link;
+      this._likes = likes;
+      this._idElement = _id;
+      this._owner = owner._id;
+      this._handleImageClick = handleImageClick;
+      this._userId = userId;
+      this.api = api;
+      this._cardImage = cardImage;
+      this._likeBtn = likeBtn;
+      this._deleteBtn = deleteBtn;
+      this._likesCounter = likesCounter;
+      this.activeLike = activeLike;
   }
 
-  deleteBtn.addEventListener("click", (evt) => {
-    deleteCard(cardData._id)
-    .then(() => {
-      evt.target.closest('.photo-grid__element').remove()
-    })
-  });
-  likeBth.addEventListener("click", () => {
-    handleLike(likeBth, cardData._id, amountOfLikes);
-  });
-  return cardElement;
-}
+  _getCardElement() {
+      const cardElement = document
+          .querySelector(this._template)
+          .content
+          .querySelector('.photo-grid__element')
+          .cloneNode(true);
 
-export function addCard(cardData) {
-  const card = createCard(cardData);
-  photoGrid.prepend(card);
-}
+      return cardElement;
+  }
 
-function handleLike(cardlikeElement, cardId, likesAmount) {
-  if (!cardlikeElement.classList.contains("photo-grid__like_active")) {
-    likeCard(cardId)
-      .then((result) => {
-        cardlikeElement.classList.toggle("photo-grid__like_active");
-        likesAmount.textContent = result.likes.length;
+  _handleDeleteCard() {
+      this.api.deleteCard(this._idElement)
+          .then(() => this._element.remove())
+          .catch((err) => {
+              console.log(err);
+          })
+  }
+
+  _toggleLike(cardId) {
+      if (cardId.querySelector(this._likeBtn).classList.contains(this.activeLike)) {
+          this.api.dislikeCard(cardId.id)
+              .then(result => this.removeLike(cardId, result.likes))
+              .catch(result => console.log(result))
+      } else {
+          this.api.likeCard(cardId.id)
+              .then(result => this.addLike(cardId, result.likes))
+              .catch(result => console.log(result))
+      }
+  }
+
+  _handleLikeCard() {
+      this._toggleLike(this._element);
+  }
+
+  removeLike(cardId, likes) {
+      cardId.querySelector(this._likeBtn).classList.remove(this.activeLike);
+      cardId.querySelector(this._likesCounter).textContent = likes.length;
+  }
+
+  addLike(cardId, likes) {
+      cardId.querySelector(this._likeBtn).classList.add(this.activeLike);
+      cardId.querySelector(this._likesCounter).textContent = likes.length;
+  }
+
+  _setEventListeners() {
+      this._element.querySelector(this._likeBtn).addEventListener('click', () => this._handleLikeCard());
+      this._element.querySelector(this._cardImage).addEventListener('click', () => this._handleImageClick(this._link, this._name));
+      this._element.querySelector(this._deleteBtn).addEventListener('click', () => this._handleDeleteCard())
+  }
+
+  generateCard() {
+      this._setEventListeners();
+      this._element.querySelector(this._cardImage).src = this._link;
+      this._element.querySelector(this._cardImage).alt = this._name;
+      this._element.querySelector('.photo-grid__title').textContent = this._name;
+      this._element.querySelector(this._likesCounter).textContent = this._likes.length;
+      this._element.id = this._idElement;
+      if (this._userId !== this._owner) {
+          this._element.querySelector(this._deleteBtn).style.display = "none";
+      }
+      this._likes.forEach(like => {
+          if (like._id === this._userId) {
+              this._element.querySelector(this._likeBtn).classList.add(this.activeLike);
+          }
       })
-      .catch((err) => console.log(err));
-  } else {
-    dislikeCard(cardId)
-      .then((result) => {
-        cardlikeElement.classList.toggle("photo-grid__like_active");
-        likesAmount.textContent = result.likes.length;
-      })
-      .catch((err) => console.log(err));
+      return this._element;
   }
-}
 
-function checkCardId(myId, cardUserId) {
-  if(myId === cardUserId) {
-    return true;
-  } else{
-    return false;
-  }
-}
-
-function checkLikesId(userId, likes) {
-  const likesArray = Array.from(likes);
-  return likesArray.some(function (element) {
-    if (element._id === userId) {
-      return element._id === userId;
-    }
-    return false;
-  });
 }

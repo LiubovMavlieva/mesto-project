@@ -1,141 +1,134 @@
-import "./index.css"
+import './index.css';
+import {Api} from "../components/Api";
+import {Card} from "../components/Card"
+import {PopupWithImage} from "../components/PopupWithImg"
+import {PopupWithForm} from '../components/PopupWithForm';
+import {Section} from "../components/Section"
+import {UserInfo} from "../components/UserInfo"
+import {FormValidate} from "../components/FormValidate"
 import {
-  addCard
-}
-from "../components/card";
-import {
-  enableValidation,
-}
-from "../components/validate";
-import {
-  getProfileData,
-  getCards,
-  createNewCard,
-  changeAvatar,
-  setUserInfo
-}
-from "../components/api.js";
-import {
-  closePopup,
-  openPopup,
-  closePopupOverlay,
-}
-from "../components/modal.js";
-import {
-  myObjValidation,
-  placeNameInput,
-  linkInput,
-  nameInput,
-  jobInput,
-  avaForm,
-  avaBtn,
-  avaSaveBtn,
-  avatarInput,
-  avatar,
-  profileJob,
-  profileName,
-  editButton,
-  addButton,
-  addSaveButton,
-  addForm,
-  editForm,
-  imgForm
-}
-from '../components/constants.js';
-import { disabledButton } from "../components/utils";
-export let myId = null;
+    config,
+    cardConfig,
+    avatar,
+    avatarObj,
+    imagePreviewConfig,
+    popupEditConfig,
+    popupPhoto,
+    popupAddConfig,
+    validateConfig,
+    buttons,
+    popupsWithForm,
+    avatarImg,
+    profileAvatar
+} from "../utils/constants"
 
-Promise.all([getProfileData(), getCards()])
-  .then(([userData, cardArray]) => {
-    profileName.textContent = userData.name;
-    profileJob.textContent = userData.about;
-    avatar.src = userData.avatar;
-    myId = userData._id;
-    cardArray.reverse().forEach((item) => {
-      addCard(item);
-    });
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+//api
+const api = new Api(config)
 
-enableValidation(myObjValidation);
+// user Info
+const userInfo = new UserInfo(popupEditConfig.nameInfo, popupEditConfig.jobInfo, avatarImg);
 
-function formPlaceSubmitHandler() {
-  addSaveButton.textContent = "Сохранение ...";
-  createNewCard(placeNameInput.value, linkInput.value)
-    .then((result) => {
-      addCard(result);
-      placeNameInput.value = "";
-      linkInput.value = "";
-      disabledButton(addSaveButton, myObjValidation)
-      closePopup(addForm);
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-    .finally(() => {
-      addSaveButton.textContent = "Сохранить";
-    });
-}
+// Модальные окна
+const popupWithImg = new PopupWithImage(popupPhoto);
 
-function formAvatarSubmitHandler() {
-  avaSaveBtn.textContent = "Сохранение ...";
-  changeAvatar(avatarInput.value)
-    .then(() => {
-      avatar.src = avatarInput.value;
-      avatarInput.value = ""
-      disabledButton(avaSaveBtn, myObjValidation)
-      closePopup(avaForm);
-    })
-    .finally(() => {
-      avaSaveBtn.textContent = "Сохранить";
-    });
-}
-
-addForm.addEventListener("submit", formPlaceSubmitHandler);
-avaForm.addEventListener("submit", formAvatarSubmitHandler);
-
-function formProfileSubmitHandler(btn, nameInput, aboutInput, nameText, professionText, popup) {
-  btn.textContent = "Сохранение ...";
-  setUserInfo(nameInput.value, aboutInput.value)
-    .then(() => {
-      nameText.textContent = nameInput.value;
-      professionText.textContent = aboutInput.value;
-      closePopup(popup);
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-  }
-
-  editForm.addEventListener("submit", function() {
-    formProfileSubmitHandler(editButton, nameInput, jobInput, profileName, profileJob, editForm
-    );
-  });
-
-editButton.addEventListener("click", () => {
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileJob.textContent;
-  openPopup(editForm);
+const popupAdd = new PopupWithForm(popupsWithForm.addPopup, {
+    submitHandler: (data) => {
+        buttons.add.textContent = 'Сохранение ...';
+        api.addNewCard(data.place, data.link)
+            .then(result => {
+                const addCard = createCard(result);
+                section.addItem(addCard, 'prepend');
+                popupAdd.close();
+            })
+            .catch(result => console.log(result))
+            .finally(() => {
+                buttons.add.textContent = 'Сохранить'
+            })
+    }
 });
-
-addButton.addEventListener("click", () => {
-  openPopup(addForm);
+const popupEdit = new PopupWithForm(popupsWithForm.editPopup, {
+    submitHandler: (data) => {
+        buttons.edit.textContent = 'Сохранение ...';
+        api.saveProfileData(data.name, data.about)
+            .then(result => {
+                console.log(result)
+                userInfo.setUserInfo(result.name, result.about)
+                popupEdit.close()
+            })
+            .catch(result => console.log(result))
+            .finally(() => buttons.edit.textContent = 'Сохранить')
+    }
 });
-avaBtn.addEventListener("click", () => {
-  openPopup(avaForm)
+const popupAvatar = new PopupWithForm(popupsWithForm.avatar, {
+    submitHandler: (data) => {
+        buttons.avatar.textContent = 'Сохранение ...';
+        api.saveProfileAvatar(data.avatar)
+            .then(result => {
+                userInfo.setUserAvatar(result.avatar)
+                popupAvatar.close()
+            })
+            .catch(result => console.log(`${result} ошибка тут`))
+            .finally(() => buttons.avatar.textContent = 'Сохранить')
+    }
 })
 
-const popups = document.querySelectorAll('.popup')
+// Вызов модальных окон
+popupWithImg.setEventListeners();
+popupAdd.setEventListeners();
+popupAddConfig.addButton.addEventListener('click', () => {
+    popupAdd.open()
+});
+popupEdit.setEventListeners();
 
-popups.forEach((popup) => {
-    popup.addEventListener('click', (evt) => {
-        if (evt.target.classList.contains('popup_opened')) {
-            closePopup(popup)
-        }
-        if (evt.target.classList.contains('popup__close-button')) {
-          closePopup(popup)
-        }
-    })
+function handlePopupEdit() {
+    const profileInfo = userInfo.getUserInfo();
+    popupEditConfig.nameInput.value = profileInfo.name;
+    popupEditConfig.jobInput.value = profileInfo.about;
+    popupEdit.open();
+}
+
+popupEditConfig.editBtn.addEventListener('click', handlePopupEdit);
+
+popupAvatar.setEventListeners()
+profileAvatar.addEventListener('click', () => {
+    popupAvatar.open()
 })
+
+// Section
+const section = new Section({
+    renderer: (item) => {
+        const newCard = createCard(item);
+        section.addItem(newCard, 'append');
+    }
+}, '.photo-grid');
+
+// Create Card
+function createCard(item) {
+    const userId = userInfo.getUserId()
+    const element = new Card(item, {
+        handleImageClick: (link, alt) => {
+            popupWithImg.open({link, alt});
+        }
+    }, '#template', userId, api, cardConfig);
+    const card = element.generateCard();
+    return card;
+}
+
+// Promise All
+Promise.all([api.getUserProfile(), api.getInitialCards()])
+    .then(([userData, cards]) => {
+        userInfo.setUserInfo(userData.name, userData.about, userData._id);
+        userInfo.setUserAvatar(userData.avatar);
+        section.renderItems(cards)
+        return section;
+    })
+    .catch(res => {console.log(res)})
+
+const formProfileValidation = new FormValidate(validateConfig, popupsWithForm.editPopup);
+formProfileValidation.enableValidation();
+
+const addCardValidation = new FormValidate(validateConfig, popupsWithForm.addPopup);
+addCardValidation.enableValidation();
+
+const avatarValidation = new FormValidate(validateConfig, popupsWithForm.avatar);
+avatarValidation.enableValidation();
